@@ -20,8 +20,8 @@
  */
 
 
-#ifndef BARREL_COMPLETION_PROVIDER_H
-#define BARREL_COMPLETION_PROVIDER_H
+#ifndef BARREL_COMPLETION_HELPER_H
+#define BARREL_COMPLETION_HELPER_H
 
 
 #include <string>
@@ -57,6 +57,9 @@ namespace barrel
 	class CompletionResult
 	{
 	public:
+
+	    bool empty() const { return items.empty(); }
+
 	    void clear();
 
 	    void push_command(const string& name, const string& desc);
@@ -68,7 +71,9 @@ namespace barrel
 	    vector<CompItem> items;
 
 	private:
+
 	    void push(Category category, const string& name, const string& desc = "", const string& display = "");
+
 	};
 
 	void set_storage(const Storage* storage);
