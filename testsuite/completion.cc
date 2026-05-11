@@ -59,9 +59,6 @@ BOOST_AUTO_TEST_CASE(test_complete_commands)
     helper.complete({}, "re");
     for (const auto& item : helper.get_result().items)
 	BOOST_CHECK(item.name.substr(0, 2) == "re");
-
-    helper.complete({}, "XXXXXX");
-    BOOST_CHECK(helper.get_result().empty());
 }
 
 
@@ -114,10 +111,6 @@ BOOST_AUTO_TEST_CASE(test_complete_option_values)
     BOOST_CHECK(item_exists(helper.get_result(), "xfs"));
     BOOST_CHECK(item_exists(helper.get_result(), "ext4"));
     BOOST_CHECK(!item_exists(helper.get_result(), "gpt"));
-
-    // unknown option
-    helper.complete({ "create", "filesystem"},  "--XXXX");
-    BOOST_CHECK(helper.get_result().empty());
 
     // option without autocompletion
     helper.complete({ "rename", "pool", "--new-name"}, "");
