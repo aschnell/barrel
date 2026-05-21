@@ -43,10 +43,10 @@
     those partitions and create a file system on the RAID.</para>
 
     <para>Barrel probes the complete storage system at startup and
-    does not save the state between invocations. That allows to mix barrel
+    does not save the state between invocations. That allows mixing barrel
     with other storage tools, although in general not concurrently.</para>
 
-    <para>Barrel always creates partitions with optimal aligned start
+    <para>Barrel always creates partitions with optimally aligned start
     and end.</para>
   </refsect1>
 
@@ -65,7 +65,7 @@
       <title>Pool</title>
       <para>Pools are a set of devices and allow barrel to find
       suitable disk space on its own. For example when the system has
-      several SSDs and the user wants to create a file system on some SSD
+      several SSDs and the user wants to create a file system on some SSD,
       barrel can pick an SSD with enough space automatically.</para>
       <para>So far devices in a pool must have a partition table to be
       usable.</para>
@@ -101,7 +101,7 @@
       <command>undo</command>.</para>
 
       <para>During commit barrel runs actions to make the system match
-      the staging devicegraph. In script mode a commit it done
+      the staging devicegraph. In script mode a commit is done
       automatically if needed.</para>
     </refsect2>
 
@@ -143,13 +143,13 @@
       <varlistentry>
 	<term><option>--color</option></term>
 	<listitem>
-	  <para>Use colors colors in output.</para>
+	  <para>Use colors in output.</para>
 	</listitem>
       </varlistentry>
       <varlistentry>
 	<term><option>--no-color</option></term>
 	<listitem>
-	  <para>Do not use colors colors in output.</para>
+	  <para>Do not use colors in output.</para>
 	</listitem>
       </varlistentry>
       <varlistentry>
@@ -161,7 +161,7 @@
       <varlistentry>
 	<term><option>--rootprefix <replaceable>path</replaceable></option></term>
 	<listitem>
-	  <para>Prepend various path (mount points and files in /etc)
+	  <para>Prepend various paths (mount points and files in /etc)
 	  with a rootprefix. Useful when running in an installation or rescue
 	  system.</para>
 	</listitem>
@@ -217,7 +217,7 @@
 	<term><option>]</option></term>
 	<listitem>
 	  <para>Ends an array construction by creating a new array from
-	  the objects on the stack upto the next mark, removing the objects and
+	  the objects on the stack up to the next mark, removing the objects and
 	  the mark from the stack and finally pushing the new array onto the
 	  stack.</para>
 	</listitem>
@@ -299,7 +299,7 @@
 	    <varlistentry>
 	      <term><option>--key-size</option></term>
 	      <listitem>
-		<para>Set the key size in in bits. Must be at least a multiple
+		<para>Set the key size in bits. Must be at least a multiple
 		of 8. See cryptsetup for more details.</para>
 	      </listitem>
 	    </varlistentry>
@@ -1087,9 +1087,9 @@
 	<listitem>
 	  <para>Shows commit actions.</para>
 	  <para>The commit actions shown here can be significantly
-	  different from the commit actions show after each individual
+	  different from the commit actions shown after each individual
 	  command. E.g. if in a first step a device is created and in a second
-	  step the device is resize, the overall commit action here will create
+	  step the device is resized, the overall commit action here will create
 	  a device with the final size right away.</para>
 
 	  <variablelist>
@@ -1178,7 +1178,7 @@
 	    <varlistentry>
               <term><option>--probe-used-space</option> <replaceable>mode</replaceable></term>
               <listitem>
-		<para>Control for which file systems the used space if
+		<para>Control for which file systems the used space is
 		probed. Possible modes are:</para>
 		<glosslist>
 		  <glossentry>
@@ -1432,7 +1432,7 @@
 	environments, can cause race conditions.</para>
       </listitem>
       <listitem>
-	<para>Incomplete support for multipath, BIOS RAIDS and DASDs.</para>
+	<para>Incomplete support for multipath, BIOS RAIDs and DASDs.</para>
       </listitem>
       <listitem>
 	<para>Tab completion in the interactive mode is not context aware.</para>
