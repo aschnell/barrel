@@ -210,10 +210,16 @@ namespace barrel
 	    }
 
 	    if (parsed_opts.has_option("mkfs-options"))
+	    {
 		mkfs_options = parsed_opts.get("mkfs-options");
+		parse_line(mkfs_options.value()); // just a sanity check
+	    }
 
 	    if (parsed_opts.has_option("tune-options"))
+	    {
 		tune_options = parsed_opts.get("tune-options");
+		parse_line(tune_options.value()); // just a sanity check
+	    }
 
 	    pool_name = parsed_opts.get_optional("pool-name");
 
