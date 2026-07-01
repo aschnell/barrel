@@ -147,8 +147,13 @@ namespace barrel
 	    optional<string> path;
 	    optional<MountByType> mount_by;
 	    optional<vector<string>> mount_options;
+#if LIBSTORAGE_NG_VERSION_AT_LEAST(1, 105)
+	    optional<vector<string>> mkfs_options;
+	    optional<vector<string>> tune_options;
+#else
 	    optional<string> mkfs_options;
 	    optional<string> tune_options;
+#endif
 	    optional<string> pool_name;
 	    optional<SmartSize> size;
 	    optional<SmartNumber> number;
@@ -211,14 +216,22 @@ namespace barrel
 
 	    if (parsed_opts.has_option("mkfs-options"))
 	    {
+#if LIBSTORAGE_NG_VERSION_AT_LEAST(1, 105)
+		mkfs_options = parse_line(parsed_opts.get("mkfs-options"));
+#else
 		mkfs_options = parsed_opts.get("mkfs-options");
 		parse_line(mkfs_options.value()); // just a sanity check
+#endif
 	    }
 
 	    if (parsed_opts.has_option("tune-options"))
 	    {
+#if LIBSTORAGE_NG_VERSION_AT_LEAST(1, 105)
+		tune_options = parse_line(parsed_opts.get("tune-options"));
+#else
 		tune_options = parsed_opts.get("tune-options");
 		parse_line(tune_options.value()); // just a sanity check
+#endif
 	    }
 
 	    pool_name = parsed_opts.get_optional("pool-name");
@@ -508,12 +521,20 @@ namespace barrel
 
 	if (options.mkfs_options)
 	{
+#if LIBSTORAGE_NG_VERSION_AT_LEAST(1, 105)
+	    blk_filesystem->set_mkfs_options_v2(options.mkfs_options.value());
+#else
 	    blk_filesystem->set_mkfs_options(options.mkfs_options.value());
+#endif
 	}
 
 	if (options.tune_options)
 	{
+#if LIBSTORAGE_NG_VERSION_AT_LEAST(1, 105)
+	    blk_filesystem->set_tune_options_v2(options.tune_options.value());
+#else
 	    blk_filesystem->set_tune_options(options.tune_options.value());
+#endif
 	}
 
 	if (options.path)

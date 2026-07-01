@@ -7,6 +7,7 @@
 #include <storage/Actiongraph.h>
 #include <storage/Devices/Partition.h>
 #include <storage/Filesystems/Ext4.h>
+#include <storage/Version.h>
 
 #include "../barrel/handle.h"
 #include "../barrel/Utils/Args.h"
@@ -44,6 +45,11 @@ BOOST_AUTO_TEST_CASE(test1)
     BOOST_CHECK_EQUAL(sdb1->get_id(), ID_LINUX);
 
     const Ext4* ext4 = to_ext4(sdb1->get_blk_filesystem());
+#if LIBSTORAGE_NG_VERSION_AT_LEAST(1, 105)
+    BOOST_CHECK_EQUAL(boost::join(ext4->get_mkfs_options_v2(), " "), "-m 0");
+    BOOST_CHECK_EQUAL(boost::join(ext4->get_tune_options_v2(), " "), "-c 0");
+#else
     BOOST_CHECK_EQUAL(ext4->get_mkfs_options(), "-m 0");
     BOOST_CHECK_EQUAL(ext4->get_tune_options(), "-c 0");
+#endif
 }
