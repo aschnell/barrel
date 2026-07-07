@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2021-2023] SUSE LLC
+ * Copyright (c) [2021-2026] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,6 +22,7 @@
 
 #include <storage/Storage.h>
 #include <storage/Actiongraph.h>
+#include <storage/Actions/Base.h>
 #include <storage/Actions/Create.h>
 #include <storage/Actions/Delete.h>
 
@@ -105,7 +106,10 @@ namespace barrel
 	const Actiongraph* actiongraph = state.storage->calculate_actiongraph();
 
 	if (state.testsuite)
-	    state.testsuite->actions = actiongraph->get_commit_actions_as_strings();
+	{
+	    for (const Action::Base* action : actiongraph->get_commit_actions())
+		state.testsuite->actions.push_back(get_string(actiongraph, action));
+	}
 
 	if (state.global_options.dry_run)
 	{
